@@ -1,8 +1,37 @@
-﻿# City-Flow Configuration
-seq_len: 12
-pred_len: 6
-batch_size: 32
-gcn_units: [64, 128, 64]
-lstm_units: 128
-learning_rate: 0.001
-epochs: 100
+﻿data:
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  h5_file: "data/raw/METR-LA.h5"
+  adj_file: "data/raw/adj_METR-LA.pkl"
+  cleaned_file: "data/processed/metr_la_cleaned.pkl"
+  scaler_file: "models/scaler_final.pkl"
+
+model:
+  num_sensors: 207
+  input_steps: 12
+  output_steps: 12
+  hidden_dim: 64
+
+training:
+  epochs: 100
+  batch_size: 32
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  patience: 15
+  min_delta: 0.0001
+  train_ratio: 0.70
+  val_ratio: 0.90
+  checkpoint_dir: "models"
+  best_model_path: "models/best_model.pth"
+  log_dir: "logs"
+
+inference:
+  model_path: "models/best_model.pth"
+  scaler_path: "models/scaler_final.pkl"
+  device: "auto"
+
+api:
+  host: "0.0.0.0"
+  port: 8000
+  title: "City-Flow Traffic Prediction API"
+  version: "1.0.0"

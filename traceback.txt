@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "<string>", line 2, in <module>
+  File "C:\Users\anish\Pro\City-Flow\run.py", line 26, in main
+    predictions = predictor.predict(dummy_window, adj_mx)
+  File "C:\Users\anish\Pro\City-Flow\inference\predictor.py", line 54, in predict
+    adj_tensor = torch.FloatTensor(adj_mx).to(self.device)                 # (207,207)
+ValueError: too many dimensions 'str'
